@@ -18,7 +18,6 @@ from django.urls import path, include
 
 from app.views import home_view, time_view, workdir_view
 
-
 urlpatterns = [
     path('', home_view, name='home'),
     # Раскомментируйте код, чтобы данные урлы 
