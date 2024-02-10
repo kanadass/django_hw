@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+
 from phones.models import Phone
 
 
@@ -7,32 +8,29 @@ def index(request):
 
 
 def show_catalog(request):
-    sort_name = request.GET.get('sort')
-    if sort_name == 'name':
-      product_object = Phone.objects.all().order_by('name')
-    elif sort_name == 'min_price':
-      product_object = Phone.objects.all().order_by('price')
-    elif sort_name == 'max_price':
-      product_object = Phone.objects.all().order_by('-price')
-    else:
-      product_object = Phone.objects.all()
-
     template = 'catalog.html'
-    phones = [p for p in product_object]
+    phone_objects = Phone.objects.all()
 
-    return render(request=request,
-                  template_name=template,
-                  context={'phones': phones})
+    sort_param = request.GET.get('sort')
+    if sort_param == 'name':
+        phone_objects = Phone.objects.all().order_by('name')
+    elif sort_param == 'min_price':
+        phone_objects = Phone.objects.all().order_by('price')
+    elif sort_param == 'max_price':
+        phone_objects = Phone.objects.all().order_by('-price')
+    else:
+        phone_objects = Phone.objects.all()
 
+    context = {
+        'phones': phone_objects,
+    }
+    return render(request, template, context)
 
 
 def show_product(request, slug):
     template = 'product.html'
-    context = {}
-    return render(request, template, context, )
-
-def show_product(request, slug):
-    template = 'product.html'
-    phone = Phone.objects.get(slug=slug)
-    context = {'phone': phone}
+    phone = get_object_or_404(Phone, slug=slug)
+    context = {
+        'phone': phone
+    }
     return render(request, template, context)
