@@ -40,10 +40,6 @@ INSTALLED_APPS = [
     'school',
 ]
 
-INTERNAL_IPS = [
-    '127.0.0.1',
-]
-
 MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -83,7 +79,7 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'PORT': '5432',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'PASSWORD': 'postgres'
     }
 }
 
@@ -139,3 +135,8 @@ try:
 except ImportError:
     pass
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]

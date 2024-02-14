@@ -20,3 +20,10 @@ class Command(BaseCommand):
                 release_date=phone['release_date'],
                 lte_exists=phone['lte_exists'],
             ).save()
+            # Phone.objects.create(
+            #     name=phone['name'],
+            #     image=phone['image'],
+            #     price=phone['price'],
+            #     release_date=phone['release_date'],
+            #     lte_exists=phone['lte_exists'],
+            # )
