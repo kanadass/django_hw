@@ -1,3 +1,19 @@
+# from django.contrib import admin
+#
+# from .models import Article, Scope, Tag
+#
+#
+# class ScopeInline(admin.TabularInline):
+#     model = Scope
+#     extra = 3
+#
+# @admin.register(Article)
+# class ArticleAdmin(admin.ModelAdmin):
+#     inlines = [ScopeInline]
+#
+# admin.site.register(Tag)
+
+
 from django.contrib import admin
 from django.core.exceptions import ValidationError
 from django.forms import BaseInlineFormSet
@@ -29,3 +45,5 @@ class ArticleAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Tag)
+
+
